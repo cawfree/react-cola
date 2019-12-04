@@ -1,0 +1,41 @@
+{
+  "name": "react-cola",
+  "version": "0.0.1",
+  "description": "WebCola for React.",
+  "main": "dist/index.js",
+  "repository": "https://github.com/cawfree/react-cola",
+  "author": "Alex Thomas (@cawfree) <hello@cawfree.com>",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "build": "./node_modules/.bin/babel ./index.js --out-file ./dist/index.js"
+  },
+  "keywords": [
+    "react",
+    "react-native",
+    "cola",
+    "d3",
+    "layout",
+    "animation",
+    "constraint"
+  ],
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run-script build"
+    }
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.7.4",
+    "@babel/core": "^7.7.4",
+    "@babel/polyfill": "^7.7.0",
+    "@babel/preset-env": "^7.7.4",
+    "@babel/preset-react": "^7.7.4",
+    "husky": "^3.1.0",
+    "lodash": "^4.17.15",
+    "prop-types": "^15.7.2",
+    "react": "^16.12.0"
+  },
+  "dependencies": {
+    "webcola": "^3.4.0"
+  }
+}
