@@ -21,6 +21,8 @@ yarn add react-cola
 
 ## ✍️ Example
 
+Below is a basic example of how to define a simple `renderLayout` prop, which will be called whenever the layout has been updated by WebCola.
+
 ```javascript
 import React from 'react';
 import WebCola from 'react-cola';
@@ -144,5 +146,9 @@ export default () => (
   />
 );
 ```
+
+## Thanks to
+[@tgdwyer](https://github.com/tgdwyer)
+
 ## ✌️ License
 [MIT](https://opensource.org/licenses/MIT)
