@@ -7,9 +7,6 @@ const Layout = ({
   nodes,
   links,
   groups,
-  linkDistance,
-  avoidOverlaps,
-  handleDisconnected,
   constraints,
   width,
   height,
@@ -17,6 +14,7 @@ const Layout = ({
   onTick,
   onEnd,
   renderLayout,
+  onHandleLayout,
   ...extraProps
 }) => {
   if (isNaN(width) || isNaN(height) || width <= 0 || height <= 0) {
@@ -35,24 +33,23 @@ const Layout = ({
     }
   );
   const [ layout ] = useState(
-    () => new ReactColaLayout()
-      .nodes(nodes)
-      .links(links)
-      .groups(groups)
-      .linkDistance(linkDistance)
-      .avoidOverlaps(avoidOverlaps)
-      .handleDisconnected(handleDisconnected)
-      .constraints(constraints)
-      .size([width, height])
-      .on(cola.EventType.start, onStart)
-      .on(
-        cola.EventType.tick,
-        (e) => {
-          setDiagram(cloneDeep(layout));
-          return onTick(e);
-        },
-      )
-      .on(cola.EventType.end, onEnd),
+    () => onHandleLayout(
+      new ReactColaLayout()
+        .nodes(nodes)
+        .links(links)
+        .groups(groups)
+        .constraints(constraints)
+        .size([width, height])
+        .on(cola.EventType.start, onStart)
+        .on(
+          cola.EventType.tick,
+          (e) => {
+            setDiagram(cloneDeep(layout));
+            return onTick(e);
+          },
+        )
+        .on(cola.EventType.end, onEnd),
+    ),
   );
   useEffect(
     () => layout.start() && undefined,
@@ -92,9 +89,6 @@ Layout.propTypes = {
       },
     ),
   ),
-  linkDistance: PropTypes.number,
-  avoidOverlaps: PropTypes.bool,
-  handleDisconnected: PropTypes.bool,
   constraints: PropTypes.arrayOf(
     PropTypes.shape({}),
   ),
@@ -104,19 +98,21 @@ Layout.propTypes = {
   onTick: PropTypes.func,
   onEnd: PropTypes.func,
   renderLayout: PropTypes.func.isRequired,
+  onHandleLayout: PropTypes.func,
 };
 
 Layout.defaultProps = {
   nodes: [],
   links: [],
   groups: [],
-  linkDistance: 100,
-  avoidOverlaps: true,
-  handleDisconnected: false,
   constraints: [],
   onStart: e => null,
   onTick: e => null,
   onEnd: e => null,
+  onHandleLayout: cola => cola
+    .linkDistance(100)
+    .avoidOverlaps(true)
+    .handleDisconnected(false),
 };
 
 export default Layout;
