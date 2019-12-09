@@ -35,10 +35,6 @@ const Layout = ({
   const [ layout ] = useState(
     () => onHandleLayout(
       new ReactColaLayout()
-        .nodes(nodes)
-        .links(links)
-        .groups(groups)
-        .constraints(constraints)
         .size([width, height])
         .on(cola.EventType.start, onStart)
         .on(
@@ -49,6 +45,9 @@ const Layout = ({
           },
         )
         .on(cola.EventType.end, onEnd),
+      nodes,
+      links,
+      constraints,
     ),
   );
   useEffect(
@@ -109,7 +108,10 @@ Layout.defaultProps = {
   onStart: e => null,
   onTick: e => null,
   onEnd: e => null,
-  onHandleLayout: cola => cola
+  onHandleLayout: (cola, nodes, links, constraints) => cola
+    .nodes(nodes)
+    .links(links)
+    .constraints(constraints)
     .linkDistance(100)
     .avoidOverlaps(true)
     .handleDisconnected(false),
