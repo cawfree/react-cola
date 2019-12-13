@@ -36,6 +36,7 @@
     "react": "^16.12.0"
   },
   "dependencies": {
+    "react-use-mutator": "^0.0.1",
     "webcola": "^3.4.0"
   }
 }
