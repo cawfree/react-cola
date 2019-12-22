@@ -17,9 +17,6 @@ const Layout = ({
   renderLayout,
   onHandleLayout,
 }) => {
-
-  console.log(width, height, '!!!!!!!!!!!!!!!1')
-
   if (isNaN(width) || isNaN(height) || width <= 0 || height <= 0) {
     throw new Error(
       `Expected valid [width, height], encountered [${width}, ${height}].`,
