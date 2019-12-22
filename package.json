@@ -1,6 +1,6 @@
 {
   "name": "react-cola",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "WebCola for React.",
   "main": "dist/index.js",
   "repository": "https://github.com/cawfree/react-cola",

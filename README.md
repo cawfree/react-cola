@@ -149,6 +149,7 @@ export default () => (
 
 ## Thanks to
 [@tgdwyer](https://github.com/tgdwyer)
+[@fzembow](https://github.com/fzembow)
 
 ## ✌️ License
 [MIT](https://opensource.org/licenses/MIT)
