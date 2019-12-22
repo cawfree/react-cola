@@ -17,6 +17,9 @@ const Layout = ({
   renderLayout,
   onHandleLayout,
 }) => {
+
+  console.log(width, height, '!!!!!!!!!!!!!!!1')
+
   if (isNaN(width) || isNaN(height) || width <= 0 || height <= 0) {
     throw new Error(
       `Expected valid [width, height], encountered [${width}, ${height}].`,
@@ -55,11 +58,12 @@ const Layout = ({
           nodes,
           links,
           constraints,
+          groups,
         ),
       )
         .start();
     },
-    [nodes, mutateLayout, ReactColaLayout, constraints, height, links, mutateDiagram, onEnd, onHandleLayout, onStart, onTick, width ],
+    [nodes, mutateLayout, ReactColaLayout, constraints, height, links, mutateDiagram, onEnd, onHandleLayout, onStart, onTick, width, groups ],
   );
   const diagram = useDiagram();
   return (
@@ -116,9 +120,10 @@ Layout.defaultProps = {
   onStart: e => null,
   onTick: e => null,
   onEnd: e => null,
-  onHandleLayout: (cola, nodes, links, constraints) => cola
+  onHandleLayout: (cola, nodes, links, constraints, groups) => cola
     .nodes(nodes)
     .links(links)
+    .groups(groups)
     .constraints(constraints)
     .linkDistance(100)
     .avoidOverlaps(true)
